@@ -2,10 +2,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
 import UserModel from "../models/user.models.js";
-import {
-  deleteFromCloudinary,
-  uploadOnCLoudinary,
-} from "../utils/cloudinary.js";
+import { uploadOnCLoudinary } from "../utils/cloudinary.js";
 
 const getUser = asyncHandler(async (req, res) => {
   // get user from request
@@ -38,11 +35,6 @@ const updateUserAccountDetails = asyncHandler(async (req, res) => {
     throw new ApiError(404, "User not found");
   }
 
-  // delete old avatar from cloudinary
-  if (user.avatar) {
-    await deleteFromCloudinary(user.avatar?.public_id);
-  }
-
   // update user details
   if (name) {
     user.name = name;
@@ -58,7 +50,7 @@ const updateUserAccountDetails = asyncHandler(async (req, res) => {
 
   let avatarLocalPath;
   if (req.file) {
-    avatarLocalPath = req.file.path;
+    avatarLocalPath = req.file?.path;
   }
 
   // upload avatar to cloudinary
