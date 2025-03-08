@@ -14,7 +14,7 @@ const UserProfile = () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          "http://localhost:8080/api/v1/users/user",
+          `${import.meta.env.VITE_API_BASE_URL}/users/user`,
           { withCredentials: true }
         );
 

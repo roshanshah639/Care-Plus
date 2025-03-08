@@ -21,7 +21,7 @@ const EditProfile = () => {
       try {
         setIsLoading(true);
         const response = await axios.get(
-          "http://localhost:8080/api/v1/users/user",
+          `${import.meta.env.VITE_API_BASE_URL}/users/user`,
           { withCredentials: true }
         );
 
@@ -79,7 +79,7 @@ const EditProfile = () => {
       }
 
       const response = await axios.patch(
-        "http://localhost:8080/api/v1/users/user/update-details",
+        `${import.meta.env.VITE_API_BASE_URL}/users/user/update-details`,
         formDataToSend,
         {
           withCredentials: true,

@@ -22,7 +22,7 @@ const AllPatientsRecords = () => {
     const fetchPatients = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/api/v1/patients/all-patient",
+          `${import.meta.env.VITE_API_BASE_URL}/patients/all-patient`,
           {
             headers: {
               "Content-Type": "application/json",

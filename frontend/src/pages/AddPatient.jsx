@@ -122,7 +122,7 @@ const AddPatient = () => {
       setIsLoading(true);
       console.log("Submitting form data with images...");
       const response = await axios.post(
-        "http://localhost:8080/api/v1/patients/add-patient",
+        `${import.meta.env.VITE_API_BASE_URL}/patients/add-patient`,
         submissionData,
         {
           headers: {

@@ -28,7 +28,7 @@ const Navbar = () => {
   const fetchUserData = async (token) => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/v1/users/user",
+        `${import.meta.env.VITE_API_BASE_URL}/users/user`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/v1/auth/logout",
+        `${import.meta.env.VITE_API_BASE_URL}/auth/logout`,
         {},
         {
           headers: { "Content-Type": "application/json" },

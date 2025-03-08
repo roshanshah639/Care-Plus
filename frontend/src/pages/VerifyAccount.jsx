@@ -16,7 +16,7 @@ const VerifyAccount = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/v1/auth/verify-account",
+        `${import.meta.env.VITE_API_BASE_URL}/auth/verify-account`,
         {
           verificationCode,
         },
