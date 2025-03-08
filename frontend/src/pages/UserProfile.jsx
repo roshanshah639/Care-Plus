@@ -19,8 +19,6 @@ const UserProfile = () => {
         }
 
         const apiUrl = `${import.meta.env.VITE_API_BASE_URL}/users/user`;
-        console.log("Fetching from:", apiUrl);
-        console.log("Token:", token);
 
         const response = await axios.get(apiUrl, {
           headers: {
@@ -29,7 +27,6 @@ const UserProfile = () => {
         });
 
         const data = response.data;
-        console.log("Response data:", data);
 
         if (data.success) {
           setUser(data.data);
