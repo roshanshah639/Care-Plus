@@ -48,14 +48,14 @@ const updateUserAccountDetails = asyncHandler(async (req, res) => {
     user.bio = bio;
   }
 
-  // let avatarLocalPath;
-  // if (req.file) {
-  //   avatarLocalPath = req.file?.path;
-  // }
+  let avatarLocalPath;
+  if (req.file) {
+    avatarLocalPath = req.file?.path;
+  }
 
   // upload avatar to cloudinary
-  if (req.file?.path) {
-    const uploadResult = await uploadOnCLoudinary(req.file?.path);
+  if (avatarLocalPath) {
+    const uploadResult = await uploadOnCLoudinary(avatarLocalPath);
     if (!uploadResult?.url) {
       throw new ApiError(500, "Failed to upload avatar to Cloudinary");
     }
