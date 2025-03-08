@@ -22,7 +22,7 @@ const uploadOnCLoudinary = async (localFilePath) => {
     console.log("Image uploaded on cloudinary successfully! ", response.url);
 
     // delete the file from server
-    // fs.unlinkSync(localFilePath);
+    fs.unlinkSync(localFilePath);
 
     // return the response
     return response;
@@ -31,7 +31,7 @@ const uploadOnCLoudinary = async (localFilePath) => {
     console.error("Error uploading file to cloudinary", error);
 
     // delete the file from server
-    // fs.unlinkSync(localFilePath);
+    fs.unlinkSync(localFilePath);
 
     // return null
     return null;
