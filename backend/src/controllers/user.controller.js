@@ -49,7 +49,7 @@ const updateUserAccountDetails = asyncHandler(async (req, res) => {
   }
 
   let avatarLocalPath;
-  if (req.file) {
+  if (req?.file) {
     avatarLocalPath = req.file?.path;
   }
 

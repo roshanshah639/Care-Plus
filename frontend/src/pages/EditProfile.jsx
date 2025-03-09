@@ -32,14 +32,13 @@ const EditProfile = () => {
         }
 
         const apiUrl = `${import.meta.env.VITE_API_BASE_URL}/users/user`;
-        console.log("Fetching user from:", apiUrl);
 
         const response = await axios.get(apiUrl, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
         const { success, data } = response.data;
-        console.log("User data:", data);
+        console.log(data.avatar);
 
         if (success && data) {
           const avatarUrl = data.avatar || userIcon;
@@ -47,7 +46,7 @@ const EditProfile = () => {
             name: data.name || "",
             email: data.email || "",
             bio: data.bio || "",
-            avatar: data.avatar || "",
+            avatar: data?.avatar || "",
           });
           setAvatarPreview(avatarUrl);
         } else {
