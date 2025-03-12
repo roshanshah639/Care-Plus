@@ -204,4 +204,68 @@ const getPatientById = async (req, res) => {
   }
 };
 
-export { addPatient, getAllPatients, getPatientById };
+const getPatientSummary = async (req, res) => {
+  try {
+    const patients = await PatientModel.find();
+
+    // Calculate age from dateOfBirth
+    const calculateAge = (dob) => {
+      const today = new Date();
+      const birthDate = new Date(dob);
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const monthDiff = today.getMonth() - birthDate.getMonth();
+      if (
+        monthDiff < 0 ||
+        (monthDiff === 0 && today.getDate() < birthDate.getDate())
+      ) {
+        age--;
+      }
+      return age;
+    };
+
+    // Initialize summary object
+    const summary = {
+      total: { Male: 0, Female: 0, "N/A": 0 },
+      ageGroups: {
+        "0-20": { Male: 0, Female: 0, "N/A": 0 },
+        "20-30": { Male: 0, Female: 0, "N/A": 0 },
+        "30-40": { Male: 0, Female: 0, "N/A": 0 },
+        "40-50": { Male: 0, Female: 0, "N/A": 0 },
+        "50-60": { Male: 0, Female: 0, "N/A": 0 },
+        "60+": { Male: 0, Female: 0, "N/A": 0 },
+      },
+    };
+
+    // Process each patient
+    patients.forEach((patient) => {
+      const age = calculateAge(patient.dateOfBirth);
+      const gender = patient.gender;
+
+      // Update total counts
+      summary.total[gender]++;
+
+      // Update age group counts
+      if (age <= 20) summary.ageGroups["0-20"][gender]++;
+      else if (age <= 30) summary.ageGroups["20-30"][gender]++;
+      else if (age <= 40) summary.ageGroups["30-40"][gender]++;
+      else if (age <= 50) summary.ageGroups["40-50"][gender]++;
+      else if (age <= 60) summary.ageGroups["50-60"][gender]++;
+      else summary.ageGroups["60+"][gender]++;
+    });
+
+    // return the success response
+    return res
+      .status(200)
+      .json(
+        new ApiResponse(200, summary, "Patient summary fetched successfully")
+      );
+  } catch (error) {
+    console.error(error);
+    throw new ApiError(
+      500,
+      error.message || "Something went wrong while fetching Patient Summary"
+    );
+  }
+};
+
+export { addPatient, getAllPatients, getPatientById, getPatientSummary };

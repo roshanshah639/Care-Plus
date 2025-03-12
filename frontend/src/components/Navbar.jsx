@@ -200,6 +200,16 @@ const Navbar = () => {
                       View Patient Records
                     </Link>
                     <Link
+                      to="/patients/summary"
+                      className="block px-4 py-2 text-indigo-950 hover:bg-[#0072E5] hover:text-white transition duration-200"
+                      onClick={() => {
+                        toggleMobileMenu();
+                        setIsPopupOpen(false);
+                      }}
+                    >
+                      View Patients Summary
+                    </Link>
+                    <Link
                       to="/patients/add-patient"
                       className="block px-4 py-2 text-indigo-950 hover:bg-[#0072E5] hover:text-white transition duration-200"
                       onClick={() => {
@@ -326,6 +336,16 @@ const Navbar = () => {
                     }}
                   >
                     View Patient Records
+                  </Link>
+                  <Link
+                    to="/patients/summary"
+                    className="block px-4 py-2 text-indigo-950 hover:bg-[#0072E5] hover:text-white transition duration-200"
+                    onClick={() => {
+                      toggleMobileMenu();
+                      setIsPopupOpen(false);
+                    }}
+                  >
+                    View Patients Summary
                   </Link>
                   <Link
                     to="/patients/add-patient"

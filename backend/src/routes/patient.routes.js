@@ -3,6 +3,7 @@ import {
   addPatient,
   getAllPatients,
   getPatientById,
+  getPatientSummary,
 } from "../controllers/patient.controller.js";
 import {
   verifyJWT,
@@ -26,5 +27,8 @@ router.route("/all-patient").get(verifyJWT, getAllPatients);
 
 // get patient by id route
 router.route("/patient/:patientId").get(verifyJWT, getPatientById);
+
+// get patient summary
+router.route("/patients-summary").get(getPatientSummary);
 
 export default router;

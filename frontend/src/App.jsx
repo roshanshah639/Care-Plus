@@ -15,6 +15,7 @@ import Services from "./pages/Services";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Doctors from "./pages/Doctors";
+import PatientSummary from "./pages/PatientSummary";
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
         <Route path="/patients/add-patient" element={<AddPatient />} />
         <Route path="/patients/view-records" element={<AllPatientsRecords />} />
         <Route path="/patients/:patientId" element={<PatientReport />} />
+        <Route path="/patients/summary" element={<PatientSummary />} />
         <Route path="/services" element={<Services />} />
         <Route path="/doctors" element={<Doctors />} />
         <Route path="/about" element={<About />} />
