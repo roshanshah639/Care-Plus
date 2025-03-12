@@ -29,6 +29,6 @@ router.route("/all-patient").get(verifyJWT, getAllPatients);
 router.route("/patient/:patientId").get(verifyJWT, getPatientById);
 
 // get patient summary
-router.route("/patients-summary").get(getPatientSummary);
+router.route("/patients-summary").get(verifyJWT, getPatientSummary);
 
 export default router;
